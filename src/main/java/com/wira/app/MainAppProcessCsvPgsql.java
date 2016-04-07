@@ -7,6 +7,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Tutorial from MKYong here :
@@ -24,9 +26,15 @@ public class MainAppProcessCsvPgsql {
 
         try{
             br = new BufferedReader(new FileReader(csvFile));
+            List<Location> locations = new ArrayList<Location>();
             while((line=br.readLine()) != null){
                 String[] csvColumn = line.split(delimiter);
                 //Ambil column keberapa untuk X dan Y, atau kolom apapun yang dibutuhkan
+                locations.add(
+                             new Location(new Integer(csvColumn[1]),
+                                          csvColumn[7],
+                                          csvColumn[8])
+                            );
             }
         }catch (Exception e){
             e.printStackTrace();
